@@ -45,3 +45,12 @@ function updateService($id, $libelle) {
     $stmt->execute(array($libelle, $id));
     $stmt->closeCursor();
 }
+
+function deleteService($id) {
+    global $connexion;
+
+    $query = "DELETE FROM services WHERE id = ?";
+    $stmt = $connexion->prepare($query);
+    $stmt->execute(array($id));
+    $stmt->closeCursor();
+}
