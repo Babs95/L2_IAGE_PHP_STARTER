@@ -6,9 +6,18 @@ if(isset($_GET['id']) AND !empty($_GET['id']) AND filter_var($_GET['id'], FILTER
 
     if($resulat->rowCount() > 0){
         $service = $resulat->fetch();
-        deleteService($service['id']);
-        $message = "Le service a été supprimée avec succès !";
+        $check = getServiceAllDocteurs($service['id']);
+
+        if($check->rowCount() > 0){
+            $message = "Ce service contient des docteurs !";
+        }else{
+            deleteService($service['id']);
+            $message = "Le service a été supprimée avec succès !";
+        }
+
         header('Location:../../views/services/services.php?message='.$message);
+        
+        
     }else{
         $errorMessage = 'L\'id du service n\'existe pas!';
     }

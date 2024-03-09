@@ -37,6 +37,19 @@ function getOneService2($id) {
     return $stmt;
 }
 
+function getServiceAllDocteurs($id) {
+    global $connexion;
+
+    $query = "SELECT docteurs.email FROM 
+    services
+    INNER JOIN docteurs ON docteurs.service_id = services.id
+    WHERE services.id = :id";
+    $stmt = $connexion->prepare($query);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+    return $stmt;
+}
+
 function updateService($id, $libelle) {
     global $connexion;
 
