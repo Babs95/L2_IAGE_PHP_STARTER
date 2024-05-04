@@ -2,13 +2,13 @@
 require('actions/services/searchServiceAction.php');
     $index = true;
     include_once './header.php';
-
+    include_once './navbar.php';
 ?>
 
 <!-- Begin page content -->
 <main class="flex-shrink-0">
     <div class="container">
-        <h1 class="mt-5">Dalal Ak Diam</h1>
+        <h1 class="mt-5">Dalal Ak Diam: <?php echo $_SESSION['prenom'] .' '. $_SESSION['nom']; ?></h1>
         <form method="GET">
             <div class="form-group row mb-4">
                 <div class="col-8">

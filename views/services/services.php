@@ -1,6 +1,7 @@
 <?php
 $service = true;
 include_once '../../header.php';
+include_once '../../navbar.php';
 require('../../Database/service_db.php');
 $services = getAllServices();
 ?>

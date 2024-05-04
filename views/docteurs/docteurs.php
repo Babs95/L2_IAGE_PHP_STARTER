@@ -1,6 +1,7 @@
 <?php
 $docteur = true;
 include_once '../../header.php';
+include_once '../../navbar.php';
 require('../../Database/docteur_db.php');
 
 $docteurs = getAllDocteurs();
