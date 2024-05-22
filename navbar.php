@@ -17,9 +17,14 @@
           <li class="nav-item">
             <a class="nav-link <?php echo !empty($service) ? "active" : ""; ?>" href="/views/services/services.php">Services</a>
           </li>
+          <?php if($_SESSION['profil'] == 1): ?>
+          <li class="nav-item">
+            <a class="nav-link <?php echo !empty($user) ? "active" : ""; ?>" href="/views/users/users.php">Utilisateurs</a>
+          </li>
+          <?php endif ?>
         </ul>
         <form class="d-flex" role="search">
-          <button class="btn btn-outline-success" type="submit">Se Déconnecter</button>
+          <a href="/actions/auth/logoutAction.php" class="btn btn-outline-success" type="submit">Se Déconnecter</a>
         </form>
       </div>
     </div>

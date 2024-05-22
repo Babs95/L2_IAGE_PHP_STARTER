@@ -12,13 +12,19 @@ if (isset($_POST['send'])) {
 
             if($check->rowCount() > 0) {
                 $userInfos = $check->fetch();
-                //die(var_dump($userInfos));
-                session_start();
-                $_SESSION['auth'] = true;
-                $_SESSION['nom'] = $userInfos['nom'];
-                $_SESSION['prenom'] = $userInfos['prenom'];
-                $_SESSION['email'] = $userInfos['email'];
-                header('location:../../index.php');
+                if(password_verify($password, $userInfos['password'])) {
+                    session_start();
+                    $_SESSION['auth'] = true;
+                    $_SESSION['nom'] = $userInfos['nom'];
+                    $_SESSION['prenom'] = $userInfos['prenom'];
+                    $_SESSION['email'] = $userInfos['email'];
+                    $_SESSION['profil'] = $userInfos['profil_id'];
+                    
+                    header('location:../../index.php');
+                }else{
+                    $errorMessage = "Votre mot de passe est incorrect!";
+                }
+                
             }else{
                 $errorMessage = 'Cet utilisateur n\'existe pas !';
             }

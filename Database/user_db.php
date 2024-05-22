@@ -1,6 +1,15 @@
 <?php
 require ('db_connection.php');
 
+function getAllUsers() {
+    global $connexion;
+
+    $query = "SELECT * FROM utilisateurs";
+    $stmt = $connexion->prepare($query);
+    $stmt->execute();
+    return $stmt;
+}
+
 function getUserByEmail($email) {
     global $connexion;
     //die(var_dump($email));
@@ -9,4 +18,12 @@ function getUserByEmail($email) {
     $stmt->bindParam(':email', $email);
     $stmt->execute();
     return $stmt;
+}
+
+function addUser($nom, $prenom, $email, $password, $profil_id){
+    global $connexion;
+    $query = "INSERT INTO utilisateurs(nom, prenom, email, password, profil_id) VALUES(?,?,?,?,?)";
+    $stmt = $connexion->prepare($query);
+    $stmt->execute(array($nom, $prenom, $email, $password, $profil_id));
+    $stmt->closeCursor();
 }
