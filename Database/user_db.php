@@ -1,6 +1,8 @@
 <?php
 require ('db_connection.php');
 
+define("UPLOAD_IMAGES_AVATAR_PATH", $_SERVER['DOCUMENT_ROOT'].'/uploads/images/avatars/');
+
 function getAllUsers() {
     global $connexion;
 
@@ -20,10 +22,10 @@ function getUserByEmail($email) {
     return $stmt;
 }
 
-function addUser($nom, $prenom, $email, $password, $profil_id){
+function addUser($nom, $prenom, $email, $password, $avatar_name, $profil_id){
     global $connexion;
-    $query = "INSERT INTO utilisateurs(nom, prenom, email, password, profil_id) VALUES(?,?,?,?,?)";
+    $query = "INSERT INTO utilisateurs(nom, prenom, email, password, profil_id, avatar) VALUES(?,?,?,?,?,?)";
     $stmt = $connexion->prepare($query);
-    $stmt->execute(array($nom, $prenom, $email, $password, $profil_id));
+    $stmt->execute(array($nom, $prenom, $email, $password, $profil_id, $avatar_name));
     $stmt->closeCursor();
 }

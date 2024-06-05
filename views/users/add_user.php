@@ -13,16 +13,23 @@ $profils = getAllProfils();
     <div class="container">
         <h1 class="mt-5">Nouveau Utilisateur</h1>
         <?php
-            if(isset($errorMessage)){
-                ?>
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <?php echo $errorMessage; ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php
-            }
+        if (isset($errorMessage)) {
         ?>
-        <form class="row g-3" method="POST">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <?php echo $errorMessage; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+        }
+        ?>
+        <form class="row g-3" method="POST" enctype="multipart/form-data">
+        <div class="col-md-6">
+                <img id="avatarPreview" src="#" style="max-width: 80px; ">
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupFile01">Avatar</label>
+                <input type="file" class="form-control" name="avatar" accept=".png,.jpg,.svg">
+            </div>
             <div class="col-md-6">
                 <label for="inputNom" class="form-label">Nom</label>
                 <input type="text" class="form-control" name="nom">
@@ -35,7 +42,7 @@ $profils = getAllProfils();
                 <label for="inputEmail" class="form-label">Email</label>
                 <input type="text" name="email" class="form-control" placeholder="Entrer un email valide">
             </div>
-          
+
             <div class="col-md-4">
                 <label for="inputState" class="form-label">Profil</label>
                 <select id="inputState" class="form-select" name="profil_id">
@@ -47,7 +54,7 @@ $profils = getAllProfils();
                     <?php endwhile ?>
                 </select>
             </div>
-            
+
             <div class="col-12">
                 <button type="submit" name="send" class="btn btn-primary">Enregistrer</button>
             </div>
